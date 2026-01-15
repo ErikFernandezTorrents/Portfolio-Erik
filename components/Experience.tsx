@@ -3,12 +3,16 @@
 import { motion } from 'framer-motion';
 import {experience} from '../lib/data';
 
-export type Job = {
+export interface Job {
   company: string;
   role: string;
   period: string;
   tasks: string[];
-};
+  technologies: string[];
+}
+
+const techTagStyle =
+  'border-[#FFD482]/40 text-[#FFD482]/80 bg-[#FFD482]/5';
 
 export default function Experience() {
   return (
@@ -45,6 +49,20 @@ export default function Experience() {
                   <li key={i}>{task}</li>
                 ))}
               </ul>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {job.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className=
+                      {`px-3 py-1 text-xs font-medium rounded-full
+                      border border-white/15
+                      bg-white/5
+                      backdrop-blur-sm ${techTagStyle}`}                    
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
